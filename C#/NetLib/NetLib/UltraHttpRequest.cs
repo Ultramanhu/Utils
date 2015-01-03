@@ -130,7 +130,6 @@ namespace NetLib {
                 using (var stream = request.EndGetRequestStream(result)) { 
                     var bytes = this._PackContent();
                     stream.Write(bytes, 0, bytes.Length);
-
                 }
                 if (req != null) {
                     req(request);
