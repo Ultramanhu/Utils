@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Test JQ Masonry</title>
+<style type="text/css">
+body
+{
+    min-width: 640px;
+}
+#Container 
+{
+    /*width: 480px;*/
+    margin: 15px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 5px #aaa;
+    /*width: 400px;*/
+    min-height: 600px;
+    background: #FFFFCC;
+    background: -moz-linear-gradient(top, #FFFFCC, white);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFCC), to(white));
+    background: -ms-linear-gradient(top, #FFFFCC, white);
+    background: -o-linear-gradient(top, #FFFFCC, white);
+    background: -webkit-linear-gradient(top, #FFFFCC, white);
+    background: linear-gradient(top, #FFFFCC, white);
+}
+.CBox
+{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #aaa;
+    background: #FFCCFF;
+    background: -moz-linear-gradient(top, #FFCCFF, white);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFCCFF), to(white));
+    background: -ms-linear-gradient(top, #FFCCFF, white);
+    background: -o-linear-gradient(top, #FFCCFF, white);
+    background: -webkit-linear-gradient(top, #FFCCFF, white);
+    background: linear-gradient(top, #FFCCFF, white);
+    float: left;
+}
+.width1 
+{
+    width: 120px;
+}
+.width2 
+{
+    width: 280px;
+}
+
+/**** Transitions ****/
+
+.transitions-enabled.masonry,
+.masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
+
+</style>
+</head>
+<body>
+	<div id="Container">
+        <div class="CBox width1">Tag们啊：
+        <p>Tag渣</p>
+        <p>Tag渣渣</p>
+        <p>Tag渣渣渣</p>
+        <p>Tag渣渣渣渣</p>
+        <p>Tag渣渣渣渣渣</p>
+        </div>
+        <div class="CBox width2">我是很宽的视频</div>
+	</div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.js"></script>
+    <script type="text/javascript" src="js/modernizr-transitions.js"></script>
+    <script type="text/javascript">
+        var Global = Global || {};
+        Global.Container = $("#Container");
+        Global.MasonryOption = {
+            itemSelector: ".CBox",
+            columnWidth: 160,
+            animationOptions: {
+                duration: 700,
+                easing: 'linear',
+                queue: false
+            },
+            isAnimated: true,
+            //isAnimated: !Modernizr.csstransitions,
+            isResizable: true
+        };
+        Global.Masonry = function () {
+            Global.Container.masonry(Global.MasonryOption);
+        }
+        Global.Update = function (html) {
+            Global.Container.append(html).masonry('reload');
+        }
+
+        Global.GenerateDiv = function (content, i) {
+            if (!i) i = 1;
+            var div = document.createElement("div");
+            $(div).addClass("CBox");
+            $(div).addClass("width" + i.toString());
+            $(div).append(content);
+            return $(div);
+        }
+
+        Global.AppendChildren = function(eles) {
+            if (!(eles instanceof Array)) {
+                eles = [eles];
+            }
+            var str = "";
+            for (var i = 0; i < eles.length; i++) {
+                str += $(eles[i])[0].outerHTML;
+            }
+            Global.Update(str);
+        }
+
+        Global.AppendItems = function(n) {
+            function getStr() {
+                var t = parseInt(Math.random() * 100);
+                str = "";
+                for (var i = 0; i < t; i++) {
+                    str += "渣";
+                }
+                return str;
+            }
+
+            str = "";
+            arr = [];
+            for (var i = 0; i < n; i++) {
+                str = getStr();
+                arr.push(Global.GenerateDiv(str, i / 10 == 0 ? 2 : 1));
+            }
+            Global.AppendChildren(arr);
+        }
+
+        $(function () {
+            Global.Masonry();
+            Global.AppendItems(40);
+
+            $(window).scroll(function () {
+                var h1 = $(window).height();
+                var h2 = $(document).scrollTop();
+                var h3 = $(document.body).height();
+                if (h1 + h2 + Math.max(h1 * 0.1, 40) >= h3) {
+                    Global.AppendItems(10);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<!--[if !IE]>|xGv00|dacdf33bf4db424314a34837d853a4b4<![endif]-->

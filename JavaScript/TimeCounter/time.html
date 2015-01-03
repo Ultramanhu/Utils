@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <title>倒计时</title>
+    </head>
+    <body>
+        <div id="last_time"></div>
+        <div id="last_2"></div>
+        <script type="text/javascript" src="http://ossweb-img.qq.com/images/js/milo/milo.js"></script>
+        <script type="text/javascript" src="http://ossweb-img.qq.com/images/script/com/qq/basic/basic.js"></script>
+        <script type="text/javascript" src="counter.js"></script>
+        <script type="text/javascript">
+            var a = new Counter();
+            a.setTimesWithRange("2014-04-08", "2014-08-04", ["20:27:00"]);
+            a.beginCount(function(count, second, minute, hour, day) {
+                var str = day + '天' + hour + '小时' + minute + '分钟' + second + '秒';
+                //alert(str);
+                document.getElementById("last_time").innerHTML = str;
+            }, true, true);
+        </script>
+    </body>
+</html>

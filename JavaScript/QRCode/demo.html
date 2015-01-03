@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gb2312" />
+    <title></title>
+</head>
+<body>
+<input type="text" value="http://ossweb-img.qq.com/images/bns/act/a20130715query/test_data.jpg" id="content" style="width:600px"/>
+<input type="button" onclick="Generate();" value="生成"/>
+<div id="qrcode"></div>
+<script src="jquery.min.js" type="text/javascript"></script>
+<script src="jquery.qrcode.js" type="text/javascript"></script>
+<script src="qrcode.js" type="text/javascript"></script>
+<script>
+    //jQuery('#qrcode').qrcode("this plugin is great");
+    function Generate() {
+        var str = $("#content").val();
+        $('#qrcode').empty();
+        $('#qrcode').qrcode({
+            width : "600",
+            height : "600",
+            text: str
+        });
+    }
+    Generate();
+</script>
+</body>
+</html>
