@@ -120,34 +120,31 @@ namespace NetLib {
         }
 
         public bool RequestAsync(ResponseCallBack rsp = null, RequestCallBack req = null) {
-            try {
-                var request = WebRequest.Create(this.Url) as HttpWebRequest;
-                if (request == null) {
-                    return false;
-                }
-
-                request.BeginGetRequestStream((result) => {
-                    using (var stream = request.EndGetRequestStream(result)) { 
-                        var bytes = this._PackContent();
-                        stream.Write(bytes, 0, bytes.Length);
-                    }
-                    if (req != null) {
-                        req(request);
-                    }
-
-                    request.BeginGetResponse((res) => {
-                        var response = request.EndGetResponse(res) as HttpWebResponse;
-                        var stream = response.GetResponseStream();
-
-                        if (rsp != null) {
-                            rsp(response, stream);
-                        }
-                    }, null);
-                }, null);
-                
-            } catch (Exception e) {
+            var request = WebRequest.Create(this.Url) as HttpWebRequest;
+            if (request == null) {
                 return false;
             }
+            request.Method = "POST";
+
+            request.BeginGetRequestStream((result) => {
+                using (var stream = request.EndGetRequestStream(result)) { 
+                    var bytes = this._PackContent();
+                    stream.Write(bytes, 0, bytes.Length);
+
+                }
+                if (req != null) {
+                    req(request);
+                }
+
+                request.BeginGetResponse((res) => {
+                    var response = request.EndGetResponse(res) as HttpWebResponse;
+                    var stream = response.GetResponseStream();
+
+                    if (rsp != null) {
+                        rsp(response, stream);
+                    }
+                }, null);
+            }, null);
             return true;
         }
     }

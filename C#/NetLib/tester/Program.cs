@@ -14,7 +14,6 @@ namespace tester {
                 var reader = new StreamReader(stream, Encoding.UTF8);
                 Console.WriteLine(reader.ReadToEnd());
             });
-            (new ManualResetEvent(false)).WaitOne();
             Console.ReadLine();
         }
     }
