@@ -18,7 +18,5 @@ namespace Coroutine {
 
         public void Reset() {
         }
-        
-
     }
 }
