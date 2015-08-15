@@ -71,6 +71,8 @@ function showState() {
     resultIdenMap = [], resultWordsMap = [];
     var container = $("#result_container");
     $(container).empty();
+    resultIdenMap[0] = false;
+    resultWordsMap[0] = false;
     for (var i = 1; i <= GameManagerIns.getTotle() ; i++) {
         resultIdenMap[i] = false;
         resultWordsMap[i] = false;
@@ -109,7 +111,7 @@ function showState() {
         $(span).addClass("input-group-btn");
         button = document.createElement("button");
         $(button).addClass("btn").addClass("btn-warning").addClass("btn-lg").attr("type", "button")
-            .attr("id", "result_iden_btn_" + i).text("显示").attr("onclick", "changeIdenResultState(" + i + ")");
+            .attr("id", "result_iden_btn_" + i).text("显示").attr("onclick", "changeIdenResultState(" + i + ", 0)");
         span.appendChild(button);
         div.appendChild(span);
 
@@ -130,7 +132,7 @@ function showState() {
         $(span).addClass("input-group-btn");
         button = document.createElement("button");
         $(button).addClass("btn").addClass("btn-warning").addClass("btn-lg").attr("type", "button")
-            .attr("id", "result_words_btn_" + i).text("显示").attr("onclick", "changeWordsResultState(" + i + ")");
+            .attr("id", "result_words_btn_" + i).text("显示").attr("onclick", "changeWordsResultState(" + i + ", 0)");
         span.appendChild(button);
         div.appendChild(span);
 
@@ -147,14 +149,14 @@ function showState() {
 //            '<span class="input-group-addon">身份</span>' +
 //            '<span class="form-control" id="result_iden_' + i + '">-</span>' +
 //            '<span class="input-group-btn">' +
-//            '<button class="btn btn-warning btn-lg" type="button" onclick="changeIdenResultState(' + i + ')" id="result_iden_btn_' + i + '">显示</button>' +
+//            '<button class="btn btn-warning btn-lg" type="button" onclick="changeIdenResultState(' + i + ', 0)" id="result_iden_btn_' + i + '">显示</button>' +
 //            '</span>' +
 //            '</div>' +
 //            '<div class="input-group input-group-lg" style="width: 100%">' +
 //            '<span class="input-group-addon">词汇</span>' +
 //            '<span class="form-control" id="result_words_' + i + '">-</span>' +
 //            '<span class="input-group-btn">' +
-//            '<button class="btn btn-warning btn-lg" type="button" onclick="changeWordsResultState(' + i + ')" id="result_words_btn_' + i + '">显示</button>' +
+//            '<button class="btn btn-warning btn-lg" type="button" onclick="changeWordsResultState(' + i + ', 0)" id="result_words_btn_' + i + '">显示</button>' +
 //            '</span>' +
 //            '</div>' +
 //            '</p>';
@@ -163,8 +165,8 @@ function showState() {
     changePanel("nav_result");
 }
 
-function changeIdenResultState(i) {
-    if (resultIdenMap[i]) {
+function changeIdenResultState(i, force) {
+    if (force == 1 || force == 0 && resultIdenMap[i]) {
         $("#result_iden_" + i).text("-");
         $("#result_iden_btn_" + i).text("显示");
         resultIdenMap[i] = false;
@@ -178,8 +180,8 @@ function changeIdenResultState(i) {
     resultIdenMap[i] = true;
 }
 
-function changeWordsResultState(i) {
-    if (resultWordsMap[i]) {
+function changeWordsResultState(i, force) {
+    if (force == 1 || force == 0 && resultWordsMap[i]) {
         $("#result_words_" + i).text("-");
         $("#result_words_btn_" + i).text("显示");
         resultWordsMap[i] = false;
@@ -192,6 +194,33 @@ function changeWordsResultState(i) {
     resultWordsMap[i] = true;
 }
 
+function changeAllIdenResultState() {
+    for (var i = 1; i <= GameManagerIns.getTotle() ; i++) {
+        changeIdenResultState(i, resultIdenMap[0] ? 1 : 2);
+    }
+    $("#result_iden_btn_all").text((resultIdenMap[0] ? "显示" : "隐藏") + "所有身份");
+    resultIdenMap[0] = !resultIdenMap[0];
+}
+
+function changeAllWordsResultState() {
+    for (var i = 1; i <= GameManagerIns.getTotle() ; i++) {
+        changeWordsResultState(i, resultWordsMap[0] ? 1 : 2);
+    }
+    $("#result_words_btn_all").text((resultWordsMap[0] ? "显示" : "隐藏") + "所有词汇");
+    resultWordsMap[0] = !resultWordsMap[0];
+}
+
 changePanel("nav_newgame");
 //changePanel("nav_gaming");
 
+function PageInit() {
+    $("#config_nums").change(function() {
+        var value = $("#config_nums").val();
+        var list = value.split("-");
+        $("#major_nums").val(list[0]);
+        $("#minor_nums").val(list[1]);
+        $("#ghost_nums").val(list[2]);
+    });
+}
+
+PageInit();
