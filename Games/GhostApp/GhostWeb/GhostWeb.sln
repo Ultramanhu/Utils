@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedApp", "SharedApp", "{D671942A-7433-440E-9A67-1D6B30C43384}"
 EndProject
@@ -11,9 +11,12 @@ Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "GhostWeb.Windows", "GhostWe
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "GhostWeb.WindowsPhone", "GhostWeb\GhostWeb.WindowsPhone\GhostWeb.WindowsPhone.jsproj", "{9156B671-3D54-4DF8-A8E0-63734DD55EC7}"
 EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "GhostWeb.Win10", "GhostWeb\GhostWeb.Win10\GhostWeb.Win10.jsproj", "{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		GhostWeb\GhostWeb.Shared\GhostWeb.Shared.projitems*{9156b671-3d54-4df8-a8e0-63734dd55ec7}*SharedItemsImports = 5
+		GhostWeb\GhostWeb.Shared\GhostWeb.Shared.projitems*{c54d67f2-0a2d-4f48-9c40-fd816a062d6e}*SharedItemsImports = 5
 		GhostWeb\GhostWeb.Shared\GhostWeb.Shared.projitems*{63c35677-04a0-4015-9cce-24e7936e5be9}*SharedItemsImports = 13
 		GhostWeb\GhostWeb.Shared\GhostWeb.Shared.projitems*{43532e90-e12c-4373-b192-d3ceb213de93}*SharedItemsImports = 5
 	EndGlobalSection
@@ -72,6 +75,30 @@ Global
 		{9156B671-3D54-4DF8-A8E0-63734DD55EC7}.Release|x86.ActiveCfg = Release|x86
 		{9156B671-3D54-4DF8-A8E0-63734DD55EC7}.Release|x86.Build.0 = Release|x86
 		{9156B671-3D54-4DF8-A8E0-63734DD55EC7}.Release|x86.Deploy.0 = Release|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|ARM.Build.0 = Debug|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x64.ActiveCfg = Debug|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x64.Build.0 = Debug|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x64.Deploy.0 = Debug|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x86.ActiveCfg = Debug|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x86.Build.0 = Debug|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Debug|x86.Deploy.0 = Debug|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|ARM.ActiveCfg = Release|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|ARM.Build.0 = Release|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|ARM.Deploy.0 = Release|ARM
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x64.ActiveCfg = Release|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x64.Build.0 = Release|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x64.Deploy.0 = Release|x64
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x86.ActiveCfg = Release|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x86.Build.0 = Release|x86
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +107,6 @@ Global
 		{63C35677-04A0-4015-9CCE-24E7936E5BE9} = {D671942A-7433-440E-9A67-1D6B30C43384}
 		{43532E90-E12C-4373-B192-D3CEB213DE93} = {D671942A-7433-440E-9A67-1D6B30C43384}
 		{9156B671-3D54-4DF8-A8E0-63734DD55EC7} = {D671942A-7433-440E-9A67-1D6B30C43384}
+		{C54D67F2-0A2D-4F48-9C40-FD816A062D6E} = {D671942A-7433-440E-9A67-1D6B30C43384}
 	EndGlobalSection
 EndGlobal
