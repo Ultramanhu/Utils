@@ -42,13 +42,13 @@
             <label class="ghost-label">
                 词汇： <b><span class="player_word">-</span></b>
             </label><br />
-            <div data-win-control="WinJS.UI.ToggleSwitch" data-win-bind="playerId: data.pos"
+            <div class="player_word_toggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-bind="playerId: data.pos"
                  data-win-options="{checked: false, labelOn: '显示', labelOff: '隐藏', onchange: playerToggleWord}">
             </div><br/>
             <label class="ghost-label">
                 身份： <b><span class="player_iden">-</span></b>
             </label><br />
-            <div data-win-control="WinJS.UI.ToggleSwitch" data-win-bind="playerId: data.pos"
+            <div class="player_iden_toggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-bind="playerId: data.pos"
                  data-win-options="{checked: false, labelOn: '显示', labelOff: '隐藏', onchange: playerToggleIden}">
             </div><br />
         </div>
@@ -191,12 +191,11 @@
     <div id="createAppBar" data-win-control="WinJS.UI.AppBar" data-win-options="{placement:'bottom'}">
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cancel',label:'取消当前',icon:'cancel',tooltip:'取消当前',section:'primary',onclick:GhostWinJS.cancel}"></button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'readme',label:'说明',icon:'help',tooltip:'说明',section:'primary',onclick:GhostWinJS.readme}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'showIdens',label:'展示身份',icon:'contact',tooltip:'展示身份',section:'primary',onclick:GhostWinJS.showIdens}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'hideIdens',label:'隐藏身份',icon:'blockcontact',tooltip:'隐藏身份',section:'primary',onclick:GhostWinJS.hideIdens}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'showWords',label:'展示身份',icon:'characters',tooltip:'展示词汇',section:'primary',onclick:GhostWinJS.showWords}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'hideWords',label:'隐藏身份',icon:'font',tooltip:'隐藏身份',section:'primary',onclick:GhostWinJS.hideWords}"></button>
     </div>
-
-    <script type="text/javascript">
-
-    
-    </script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/ui.js"></script>
 </body>

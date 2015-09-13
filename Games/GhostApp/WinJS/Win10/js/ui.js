@@ -62,6 +62,11 @@ function configNumChanges() {
     $("#minor_nums").val(list[1]);
     $("#ghost_nums").val(list[2]);
 }
+function changeToggleStates(prefix, value) {
+    for (var i = 1; i <= GameManager.Ins.getTotle(); i++) {
+        $("#" + prefix + "toggle_" + i.toString())[0].winControl.checked = value;
+    }
+}
 WinJS.Namespace.define("GhostWinJS", {
     cancel: WinJS.UI.eventHandler(function (ev) {
         if (isAnimating)
@@ -75,6 +80,26 @@ WinJS.Namespace.define("GhostWinJS", {
                 $("#createAppBar")[0].winControl.getCommandById("cancel").hidden = true;
             });
         });
+    }),
+    showIdens: WinJS.UI.eventHandler(function (ev) {
+        changeToggleStates(WORD_PREFIX, true);
+        $("#createAppBar")[0].winControl.getCommandById("showIdens").hidden = true;
+        $("#createAppBar")[0].winControl.getCommandById("hideIdens").hidden = false;
+    }),
+    hideIdens: WinJS.UI.eventHandler(function (ev) {
+        changeToggleStates(WORD_PREFIX, false);
+        $("#createAppBar")[0].winControl.getCommandById("showIdens").hidden = false;
+        $("#createAppBar")[0].winControl.getCommandById("hideIdens").hidden = true;
+    }),
+    showWords: WinJS.UI.eventHandler(function (ev) {
+        changeToggleStates(IDEN_PREFIX, true);
+        $("#createAppBar")[0].winControl.getCommandById("showWords").hidden = true;
+        $("#createAppBar")[0].winControl.getCommandById("hideWords").hidden = false;
+    }),
+    hideWords: WinJS.UI.eventHandler(function (ev) {
+        changeToggleStates(IDEN_PREFIX, false);
+        $("#createAppBar")[0].winControl.getCommandById("showWords").hidden = false;
+        $("#createAppBar")[0].winControl.getCommandById("hideWords").hidden = true;
     }),
     readme: WinJS.UI.eventHandler(function (ev) {
         $("#help-msg")[0].winControl.show();
@@ -135,9 +160,13 @@ function showState() {
         template.render(data).then(function (e) {
             $(".player_word", e).attr("id", WORD_PREFIX + pos.toString());
             $(".player_iden", e).attr("id", IDEN_PREFIX + pos.toString());
+            $(".player_word_toggle", e).attr("id", WORD_PREFIX + "toggle_" + pos.toString());
+            $(".player_iden_toggle", e).attr("id", IDEN_PREFIX + "toggle_" + pos.toString());
             container.append(e);
         });
     }
+    $("#createAppBar")[0].winControl.getCommandById("showIdens").hidden = false;
+    $("#createAppBar")[0].winControl.getCommandById("showWords").hidden = false;
 }
 function startGame() {
     var checker = function (id, msg) {
@@ -154,6 +183,10 @@ function startGame() {
         return;
     if (!checker("ghost_words", "鬼词条未填写"))
         return;
+    $("#createAppBar")[0].winControl.getCommandById("showIdens").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("hideIdens").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("showWords").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("hideWords").hidden = true;
     GameManager.Ins.setCurrent($("#major_words").val(), $("#minor_words").val(), $("#ghost_words").val());
     GameManager.Ins.setPlayerNums(parseInt($("#major_nums").val()), parseInt($("#minor_nums").val()), parseInt($("#ghost_nums").val()));
     GameManager.Ins.doRand();
@@ -167,6 +200,10 @@ function startGame() {
 }
 function pageInit() {
     $("#createAppBar")[0].winControl.getCommandById("cancel").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("showIdens").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("hideIdens").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("showWords").hidden = true;
+    $("#createAppBar")[0].winControl.getCommandById("hideWords").hidden = true;
 }
 WinJS.Utilities.markSupportedForProcessing(toggleShowWords);
 WinJS.Utilities.markSupportedForProcessing(playerToggleWord);
